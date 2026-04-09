@@ -10,11 +10,13 @@ export interface Message {
 }
 
 export const chatWithAI = async (messages: Message[]) => {
-  const apiKey = getStorageItem(STORAGE_KEYS.OPENROUTER_API_KEY) 
-    || process.env.NEXT_PUBLIC_OPENROUTER_KEY 
-    || DEFAULT_KEYS.OPENROUTER;
+  let apiKey = getStorageItem(STORAGE_KEYS.OPENROUTER_API_KEY);
   
-  if (!apiKey) {
+  if (!apiKey || apiKey === 'undefined' || apiKey === 'null' || apiKey.trim() === '') {
+    apiKey = process.env.NEXT_PUBLIC_OPENROUTER_KEY || DEFAULT_KEYS.OPENROUTER;
+  }
+  
+  if (!apiKey || apiKey.trim() === '') {
     throw new Error('OpenRouter API Key is missing. Please add it in settings.');
   }
 
@@ -46,9 +48,13 @@ export const chatWithAI = async (messages: Message[]) => {
 };
 
 export const generateImage = async (prompt: string) => {
-  const token = getStorageItem(STORAGE_KEYS.HF_TOKEN) || DEFAULT_KEYS.HF;
+  let token = getStorageItem(STORAGE_KEYS.HF_TOKEN);
   
-  if (!token) {
+  if (!token || token === 'undefined' || token === 'null' || token.trim() === '') {
+    token = process.env.NEXT_PUBLIC_HF_TOKEN || DEFAULT_KEYS.HF;
+  }
+  
+  if (!token || token.trim() === '') {
     throw new Error('Hugging Face Token is missing. Please add it in settings.');
   }
 
