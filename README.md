@@ -1,5 +1,5 @@
 # Nexus AI - Chat & Create
-
+url web: https://activity-3-df3t5hpxv-ravi-yadavs-projects-053d40f7.vercel.app/
 Nexus AI is a modern, professional-level AI web application built with Next.js 15, TypeScript, and Tailwind CSS. It provides a unified workspace for both interactive conversations and high-quality image generation.
 
 ## 🚀 Features
